@@ -1,0 +1,45 @@
+{% extends 'nav.html' %}
+
+{% block content  %}
+    <h1 style="color:rgb(29, 29, 100)">{{problem.topic}}</h1>
+        <div style="background-color: darkgray; padding:25px; border-radius:7px; margin-bottom:15px">
+            <h4>Description:- {{ problem.describe_problem }}</h4>
+            <p>CODE:</p>
+            <p style="color: rgb(146, 51, 51); font-weight:bold; padding-left:20px; font-size:20px">{{ problem.code_to_debug|safe }}</p>
+            <p>{{ problem.date_posted }}</p>
+            <p>By: {{ problem.author }}</p>      
+        </div>
+
+        {% for solution in solutions %}
+
+        <div style="background-color:rgb(73, 78, 73); color:burlywood; padding:25px; margin:25px; border-radius:5px;  margin-bottom:15px">
+            <div style="margin-bottom: 30px;">
+                <h4>Explanation:</h4>
+                <p>{{solution.short_note}}</p>
+            </div>
+            <div>
+                <h4>Code:</h4>
+                <p style="padding-left:20px; font-weight:bold; font-size:20px">{{solution.correct_code|safe}}</p>
+                <p>By: {{solution.solution_author}}</p>
+                {% if solution.solution_author == user.username %}
+                    <a style="background-color:rgb(21, 134, 209); border-radius:5px; color:wheat; padding:5px" href="{% url 'edit_solution' solution.id %}">Edit</a>
+                    <a style="background-color:rgb(209, 21, 21); border-radius:5px; color:wheat; padding:5px" href="{% url 'delete_solution' solution.id %}">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        
+        <form class="inputText" method="POST">
+            <div>
+                <h4 style="font-weight:bold;">Short explanation:</h4>
+                {{solutionsForm.short_note}}
+            </div>
+            <div>
+                <h4 style="font-weight:bold;">Correct Code:</h4>
+                {{solutionsForm.correct_code}} 
+                {{solutionsForm.media}} 
+            </div>
+            {% csrf_token %}
+            <button style="margin-top: 15px;" type="submit" value="Submit Solution" class="btn btn-info">Submit Solution</button>
+        </form>
+{% endblock %}

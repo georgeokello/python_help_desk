@@ -1,0 +1,24 @@
+
+{% extends 'nav.html' %}
+
+{% block content %}
+
+<div>
+    <h1>Edit your problem</h1>
+    <form class="inputText" method="POST">
+        <h4>Topic</h4>
+        {{form.topic}}
+        <h4>Problem description</h4>
+        {{form.describe_problem}}
+        <h4>Code</h4>
+        {{form.code_to_debug}}
+        {{form.media}}<br>
+        {% csrf_token %}
+        <button style="margin-top:10px" type="submit" name="Submit" class="btn btn-info">Submit</button>
+    </form>
+        
+</div>
+{% endblock %}
+
+
+

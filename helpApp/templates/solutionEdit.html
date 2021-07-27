@@ -1,0 +1,18 @@
+{% extends 'nav.html' %}
+
+{% block content  %}
+<h1>Edit your solution</h1>
+        <form class="inputText" method="POST">
+            <div>
+                <h4 style="font-weight:bold;">Short explanation:</h4>
+                {{form.short_note}}
+            </div>
+            <div>
+                <h4 style="font-weight:bold;">Correct Code:</h4>
+                {{form.correct_code}} 
+                {{form.media}} 
+            </div>
+            {% csrf_token %}
+            <button style="margin-top: 15px;" type="submit" value="Submit Solution" class="btn btn-info">Submit Solution</button>
+        </form>
+{% endblock %}

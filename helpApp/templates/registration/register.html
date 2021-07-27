@@ -1,0 +1,28 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+<div class="form1" style="background-color: rgb(44, 42, 42); width:fit-content; padding:15px; margin-left:auto; margin-right:auto">
+    <h3>Create an Account</h3>
+
+<form method="POST">
+    <div >
+        {% csrf_token %} 
+        <p>{{forms.username.label}}</p>
+        <p>{{forms.username}}</p>
+    </div> 
+    <div>
+        <p>{{forms.password1.label}}</p>
+        <p>{{forms.password1}}</p>
+    </div> 
+    <div>
+        <p>{{forms.password2.label}}</p>
+        <p>{{forms.password2}}</p>
+    </div> 
+    <button type="submit">Register</button>
+    </form>
+    <div>
+        <p>Have an account, <span><a href="{% url 'login' %}">Login Here</a></span></p>
+    </div>
+</div>
+
+{% endblock %}

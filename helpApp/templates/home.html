@@ -1,0 +1,22 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+
+    <h1 class="container-fluid text-center">Problems Along with sugguested solutions</h1>
+    {% for problem in problems %}
+        <div class="container-fluid" style="background-color: darkgray; padding:35px; border-radius:5px; margin:10px">
+            <h3 class="text-center"><a style="color:rgb(29, 29, 100)" href="{% url 'details' problem.id %}">Topic:- {{ problem.topic }}</a></h3>
+            <h4>Description:- {{ problem.describe_problem }}</h4>
+            <p>CODE:</p>
+            <p><span><code style="color: rgb(146, 51, 51); font-weight:bold; font-size:20px;"> {{ problem.code_to_debug|safe }} <br></code></span></p>
+            <p>{{ problem.date_posted }}</p>
+            <p>By: {{ problem.author }}</p>
+            {% if problem.author == request.user %}
+                <a style="background-color:rgb(21, 134, 209); border-radius:5px; color:wheat; padding:5px" href="{% url 'edit_problem' problem.id %}">Edit</a>
+                <a id = 'delete' style="background-color:rgb(209, 21, 21); border-radius:5px; color:wheat; padding:5px" href="{% url 'delete_problem' problem.id %}">Delete</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+

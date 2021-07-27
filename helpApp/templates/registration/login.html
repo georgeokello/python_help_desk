@@ -1,0 +1,23 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+<div style="background-color: rgb(44, 42, 42); width:fit-content; padding:15px; margin-left:auto; margin-right:auto" class="form1">
+
+    <h3>User Login</h3>
+
+    <form method="POST">
+    <div>
+        <p>{{form.username}}</p>
+        <p>{{form.password}}</p>
+    </div> 
+    {% csrf_token %}
+    <button type="submit">Login</button>
+    </form>
+    <div>
+    <p> Dont have an account, <span><a href="{% url 'signup' %}">Register Here</a></span></p>
+    </div>
+
+
+</div>
+
+{% endblock %}
