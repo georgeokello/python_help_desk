@@ -82,14 +82,12 @@ def details(request, pk):
 
 def edit_solution(request, pk):
     solution = get_object_or_404(Solution_to_problems, pk=pk)
-    problem = get_object_or_404(PostProblem, pk=pk)
-    id = problem.pk
     if request.method == 'POST':
         form = SolutionsForm(request.POST, instance=solution)
         if form.is_valid():
             form.save()
             #url = reverse('details/', kwargs={'key': pk })
-            return redirect('details', pk=id)
+            return redirect('details', pk=pk)
         else:
             form = SolutionsForm(instance=solution)
     else:
